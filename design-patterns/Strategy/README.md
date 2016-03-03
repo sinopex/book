@@ -1,3 +1,4 @@
+```php
 <?php
 /**
  * index.php
@@ -11,3 +12,4 @@ namespace designPatterns\Strategy;
 
 $payment = new Payment(Payment::PAY_TYPE_ALIPAY);
 echo $payment->pay(100);
+```
