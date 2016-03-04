@@ -14,7 +14,7 @@ Linux/BSD系统分为三个重要组成部分:
 - Shell
 - 工具程序
 
-> 查询操作系统的shell环境与版本
+> ### 查询操作系统的shell环境与版本
 
 ```bash
 #!/bin/bash
