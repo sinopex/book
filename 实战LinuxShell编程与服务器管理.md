@@ -15,6 +15,7 @@ Linux/BSD系统分为三个重要组成部分:
 - 工具程序
 
 > #### 查询操作系统的shell环境与版本
+----- 
 
 ```bash
 #!/bin/bash
@@ -25,9 +26,9 @@ echo $SHELL
 #查看版本号
 echo $BASH_VERSION
 ```
-----
 
 > #### 当服务器日志文件很大时,利用特殊文件/dev/null(只写文件)来清理:
+----- 
 
 ```bash
 #!/bin/bash
@@ -62,6 +63,7 @@ cp /dev/null/ /var/log/nginx/access.log
 -----
 
 > #### 关于转义字符:单引号中,不可以出现单引号,就算用转移字符\'也不行
+----- 
 
 ```bash
 #!/bin/bash
@@ -70,7 +72,8 @@ cp /dev/null/ /var/log/nginx/access.log
 echo 'This is Jack\'s book.'
 ```
 
-> 字符集合
+> #### 字符集合
+----- 
 
 字符集合的符号为`[]`,含义是`[]`所列其中的某一个字符,长度为1
 
@@ -82,7 +85,8 @@ echo 'This is Jack\'s book.'
 - [!0-9] 非数字
 - [!a-z] 非小写字母
 
-> 括号扩展
+> #### 括号扩展
+----- 
 
 括号扩展的符号为`{}`,含义是`{}`中的所有组合项,他弥补了字符集合`[]`长度为1的不足
 
@@ -91,7 +95,8 @@ echo 'This is Jack\'s book.'
 - `ls /bin/z{[ef]gre,cm}p` 查找bin目录下egrep,fgrep,cmp这三程序 
 - `echo {1,2,3,4,5,6,7,8,9}\*{1,2,3,4,5,6,7,8,9}` 打印九九乘法表
 
-> 父Shell与子Shell
+> #### 父Shell与子Shell
+----- 
 
 在执行Shell Script之前,我们已经处于login shell之中,称之为父Shell,当我们执行某个Shell Script时,父Shell会根据Script程序的第一行`#!`之后所指定的Shell程序开启一个子Shell的环境,然后在子Shell中执行此Shell脚本,一但子Shell执行完毕,此子Shell随即结束,返回父Shell之中,不会影响父Shell原本的环境
 
@@ -100,7 +105,8 @@ echo 'This is Jack\'s book.'
 命令`echo $SHLVL`可以查看当前终端程序在第几层执行
 
 
-> Bash的运行模式及启动配置文件
+> #### Bash的运行模式及启动配置文件
+----- 
 
 - 互动模式,终端读取键盘命令,一条一条的执行
 - 非互动模式,是指执行一个Script程序
