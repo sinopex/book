@@ -26,8 +26,10 @@ echo $SHELL
 echo $BASH_VERSION
 ```
 
-#### 当服务器日志文件很大时,利用特殊文件/dev/null(只写文件)来清理:
+#### 快速清理大日志文件
 ----- 
+
+当服务器日志文件很大时,利用特殊文件/dev/null(只写文件)来清理:
 
 ```bash
 #!/bin/bash
@@ -35,7 +37,7 @@ echo $BASH_VERSION
 cp /dev/null/ /var/log/nginx/access.log
 ```
 
-#### Unix-like的操作系统中,一切皆为文件,文件可分成几种
+#### Unix-like操作系统中的文件类型
 -----
 
 - 一般文件(文本文件,二进制文件)
@@ -57,7 +59,7 @@ cp /dev/null/ /var/log/nginx/access.log
 |s|Socket文件|
 |p|连接文件|
 
-#### 关于转义字符
+#### 转义字符
 ----- 
 
 > 单引号中,不可以出现单引号,就算用转移字符\'也不行
