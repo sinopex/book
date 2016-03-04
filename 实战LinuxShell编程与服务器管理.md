@@ -14,8 +14,7 @@ Linux/BSD系统分为三个重要组成部分:
 - Shell
 - 工具程序
 
-> #### 查询操作系统的shell环境与版本
-
+#### 查询操作系统的shell环境与版本
 ----- 
 
 ```bash
@@ -28,8 +27,7 @@ echo $SHELL
 echo $BASH_VERSION
 ```
 
-> #### 当服务器日志文件很大时,利用特殊文件/dev/null(只写文件)来清理:
-
+#### 当服务器日志文件很大时,利用特殊文件/dev/null(只写文件)来清理:
 ----- 
 
 ```bash
@@ -38,8 +36,8 @@ echo $BASH_VERSION
 cp /dev/null/ /var/log/nginx/access.log
 ```
 
-
 #### Unix-like的操作系统中,一切皆为文件,文件可分成几种
+-----
 
 - 一般文件(文本文件,二进制文件)
 - 目录(文件夹,代码)
@@ -49,7 +47,6 @@ cp /dev/null/ /var/log/nginx/access.log
 - 隐藏文件
 
 不同的文件,各有其代码:
-
 
 
 | 符号  | 文件类型  |
@@ -62,10 +59,7 @@ cp /dev/null/ /var/log/nginx/access.log
 |s|Socket文件|
 |p|连接文件|
 
------
-
-> #### 关于转义字符:单引号中,不可以出现单引号,就算用转移字符\'也不行
-
+#### 关于转义字符:单引号中,不可以出现单引号,就算用转移字符\'也不行
 ----- 
 
 ```bash
@@ -75,8 +69,7 @@ cp /dev/null/ /var/log/nginx/access.log
 echo 'This is Jack\'s book.'
 ```
 
-> #### 字符集合
-
+#### 字符集合
 ----- 
 
 字符集合的符号为`[]`,含义是`[]`所列其中的某一个字符,长度为1
