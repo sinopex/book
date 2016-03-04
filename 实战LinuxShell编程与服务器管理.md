@@ -6,8 +6,6 @@
 
 出版社:电子工业出版社
 
------ 
-
 #### Linux/BSD系统的三个组成部分
 ----
 
@@ -49,7 +47,6 @@ cp /dev/null/ /var/log/nginx/access.log
 
 不同的文件,各有其代码:
 
-
 | 符号  | 文件类型  |
 |:-------------:|:-------------:|
 |-|一般文件|
@@ -60,8 +57,10 @@ cp /dev/null/ /var/log/nginx/access.log
 |s|Socket文件|
 |p|连接文件|
 
-#### 关于转义字符:单引号中,不可以出现单引号,就算用转移字符\'也不行
+#### 关于转义字符
 ----- 
+
+> 单引号中,不可以出现单引号,就算用转移字符\'也不行
 
 ```bash
 #!/bin/bash
@@ -83,8 +82,7 @@ echo 'This is Jack\'s book.'
 - [!0-9] 非数字
 - [!a-z] 非小写字母
 
-> #### 括号扩展
-
+#### 括号扩展
 ----- 
 
 括号扩展的符号为`{}`,含义是`{}`中的所有组合项,他弥补了字符集合`[]`长度为1的不足
@@ -94,9 +92,7 @@ echo 'This is Jack\'s book.'
 - `ls /bin/z{[ef]gre,cm}p` 查找bin目录下egrep,fgrep,cmp这三程序 
 - `echo {1,2,3,4,5,6,7,8,9}\*{1,2,3,4,5,6,7,8,9}` 打印九九乘法表
 
-> #### 父Shell与子Shell
-
-
+#### 父Shell与子Shell
 ----- 
 
 在执行Shell Script之前,我们已经处于login shell之中,称之为父Shell,当我们执行某个Shell Script时,父Shell会根据Script程序的第一行`#!`之后所指定的Shell程序开启一个子Shell的环境,然后在子Shell中执行此Shell脚本,一但子Shell执行完毕,此子Shell随即结束,返回父Shell之中,不会影响父Shell原本的环境
@@ -105,9 +101,7 @@ echo 'This is Jack\'s book.'
 
 命令`echo $SHLVL`可以查看当前终端程序在第几层执行
 
-
-> #### Bash的运行模式及启动配置文件
-
+#### Bash的运行模式及启动配置文件
 ----- 
 
 - 互动模式,终端读取键盘命令,一条一条的执行
@@ -118,7 +112,7 @@ echo 'This is Jack\'s book.'
 
 在不同的运行模式中,Bash调用不同的启动配置文件,Bash启动配置文件,主要与Shell的环境设定有关,以下详细描述不同模式下的配置文件读取过程
 
-##### 登录(login)
+**登录(login)**
 
 按加载顺序依次排列
 
@@ -127,12 +121,12 @@ echo 'This is Jack\'s book.'
 - $HOME/.bash_login
 - $HOME/.profile
 
-##### 注销(logout)
+**注销(logout)**
 
 - $HOME/.bash_logout
 
 
-##### 执行新shell
+**执行新shell**
 
 以交互方式的Shell
 
@@ -141,5 +135,5 @@ echo 'This is Jack\'s book.'
 
 执行Shell Script
 
-- 读取检查BASN_ENV变量内容
+- 读取检查BASH_ENV变量内容
 
