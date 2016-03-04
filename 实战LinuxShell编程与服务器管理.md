@@ -209,4 +209,9 @@ Bash Shell的内置命令,不必再去程序路径查找,直接就可以调用
 - `tr '[A-Z]' '[a-z]' < data1` 将data1中的大写全换成小写
 - `tr '[a-z]' '[A-Z]' < data1` 将data1中的小写全换成大写
 - `tr -s ' ' ' ' < data1` 将多余的空白删除只剩一个,`-s`是挤压的意思
-
+- `grep A *` 将含有`A`字符的文件及行显示出来
+- `grep -i A *` 匹配不区分大小写,`A`和`a`都能匹配
+- `grep -v A *` 匹配不含`A`的行
+- `grep -n A *` 显示行号
+- `grep -l A *` 不显示行内容,是显示文件名称
+- `grep -q keyword filename` 若filename中含有keyword则返回0(真),否则传回非0
