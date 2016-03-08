@@ -54,3 +54,5 @@
 |bigint|8|
 |float|4|
 |double|8|
+|decimal(m,d)|m+2|
+|bit(m)|1-8|
