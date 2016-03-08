@@ -84,7 +84,7 @@ set类型可以一次选取多个成员,里面可以包括0-64个成,不同的�
 #### MySQL中的流程函数
 
 |函数|功能|
-|--|--|
+|---|---|
 |IF(value,t,f)|如果value为真返回t,否则返回f|
 |IFNULL(value1,value2)|如果value1不为空返回value1,否则返回value2|
 |CASE WHEN [value1] THEN result1 ...ELSE [default] END|如果value1是真,返回result1,否则返回default|
