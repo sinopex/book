@@ -39,4 +39,18 @@
 - =
 - !=
 - exists
-- not exists
+- not exists3
+
+#### MySQL数值类型的字节长度
+----
+
+
+|类型|字节|
+|:--:|:--:|
+|tinyint|1|
+|smallint|2|
+|mediumint|3|
+|int|4|
+|bigint|8|
+|float|4|
+|double|8|
