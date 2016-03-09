@@ -281,7 +281,7 @@ select sum(subtotal) from order_detail;
 
 unlock tables;
 
-```;
+```
 
 - `local`选项其作用就是在满足MyISAM表并发插入的情况下,允许其它用户在表尾并发插入数据
 - 在用`lock tables`给表显示加锁时,必须同时取得所有涉及表的锁,并且MySQL不支持锁升级,加锁期间只能访问加锁的表
