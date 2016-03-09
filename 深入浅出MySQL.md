@@ -145,10 +145,12 @@ MySQL5.5以后默认使用InnoDB存储引擎
 `SELECT * FROM USER ORDER BY RAND() LIMIT 1`
 
 #### 正则表达式查询
+----
 
 `SELECT * FROM USER WHERE name regexp '^test_'`
 
 #### MySQL大小写敏感区分
+----
 
 > lower_case_file_system：数据库所在的文件系统对文件名大小写敏感度。
 
@@ -160,3 +162,32 @@ ON表示大小写不敏感 OFF表示敏感
 - 1表示大小写敏感，文件系统以小写保存
 - 2表示使用Create语句指定的大小写保存文件，但MyS
 
+#### 存在索引但不会使用的情况
+----
+
+- Heap引擎下只在操作符`=`下才使用引擎
+- 用Or分割开的条件,如果or前的条件列有索引,但是后面的列没有索引,则不会使用索引
+- 对于符合索引,不是索引的第一部分
+- `like`语句以`%`开头的无法使用索引
+- 如果列是字符串,如果没有用引号括起来,也不会用到索引
+
+#### SQL优化步骤
+----
+
+- 通过`show [global|session] status`命令了解各种SQL的执行频率
+- 定位执行效率低的SQL语句
+- 使用`show processlist`查看当前MySQL在进行的线程
+- 通过explain分析低效的SQL语句
+
+#### 常用SQL优化
+----
+
+- 大批量插入数据
+
+对于MyISAM存储引擎的表,可通过以下方法快速的导入数据:
+
+```mysql
+ALTER TABLE tbl_name DISABLE KEYS; - 关闭非唯一索引的更新
+loading the data
+ALTER TABLE tbl_name ENABLE KEYS; - 打开非唯一索引的更新
+```
