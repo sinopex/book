@@ -182,7 +182,7 @@ ON表示大小写不敏感 OFF表示敏感
 #### 常用SQL优化
 ----
 
-- 大批量插入数据
+##### 大批量插入数据
 
 对于MyISAM存储引擎的表,可通过以下方法快速的导入数据:
 
@@ -203,7 +203,7 @@ ALTER TABLE tbl_name ENABLE KEYS;
 
 3) 如果应用是自动提交的方式,在导入前执行`SET AUTOCOMMIT = 0`,关闭自动提交,导入结束后执行`SET AUTOCOMMIT = 1`再度开启自动提交模式
 
-- 优化Insert语句
+##### 优化Insert语句
 
 当进行数据INSERT的时候,可以考虑采用以下几种优化方式:
 
@@ -216,3 +216,9 @@ ALTER TABLE tbl_name ENABLE KEYS;
 4) 如果进行批量插入,可以增加`bulk_insert_buffer_size`变量值的方法来提高速度,但是只能针对MyISAM存储引擎
 
 5) 当从一个文本文件装在一个表时,利用`LOAD DATA INFILE`,这种方式比通常的`INSERT`方法快将近20倍
+
+##### 优化`GROUP BY`语句
+
+默认情况下,MySQL对所有的`GROUP BY col1,col2,....`的字段进行排序,与`ORDER BY col1,col2`类似.
+
+如果查询包括`GROUP BY`但是用户想要避免排序结果的消耗,则可以指定`ORDER BY NULL`禁止排序
