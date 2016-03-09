@@ -242,3 +242,58 @@ ALTER TABLE tbl_name ENABLE KEYS;
 为强制MySQL使用一个特定的索引,可在查询中使用`FORCE INDEX`作为HINT
 
 `SELECT * FROM sale force index(idx_order_id) where id=:id`
+
+#### MySQL锁问题
+----
+
+MySQL支持3种锁:
+
+- 表级索(MyISAM):开销小,加锁快,不会出现死锁,锁定粒度大,发生锁冲突的概率最高,并发度最低
+- 行级索(InnoDB):开销大,加锁慢,会出现死锁,锁定粒度最小,发生锁冲突的概率最低,并发度最高
+- 页级索(BDB):开销和加锁介于二者之间,会出现死锁,并发度一般
+
+
+##### MyISAM表索
+
+查看表级所争用情况:
+
+`show status like 'table%'`
+
+- `table_locks_immediate`
+- `table_locks_waited`
+
+> 锁模式
+
+读操作,不会阻塞其它用户访问同一表的读请求,但是会阻塞对同一表的写请求
+
+写操作,会同时阻塞用户对同一表的读和写请求
+
+> 如何加锁
+
+
+```sql
+
+lock tables order read local,order_detail read local
+
+select sum(total) from order;
+
+select sum(subtotal) from order_detail;
+
+unlock tables;
+
+```;
+
+- `local`选项其作用就是在满足MyISAM表并发插入的情况下,允许其它用户在表尾并发插入数据
+- 在用`lock tables`给表显示加锁时,必须同时取得所有涉及表的锁,并且MySQL不支持锁升级,加锁期间只能访问加锁的表
+- 当使用`lock tables`时,同一表出现多次,就要通过别名锁定多少次,否则会出错
+
+> 并发插入(Concurrent Inserts)
+
+MySQL可以通过修改`concurrent insert`系统变量,控制并发插入的行为
+
+- `concurrent_insert = 0` 不允许并发插入
+- `concurrent_insert = 1` 如果MyISAM中没用空洞,允许在一个进程读表的同时,另一个进程从表尾插入记录,这是默认设置
+- `concurrent_insert = 2` 无论有没有空洞,都允许从表尾插入记录
+
+##### InnoDB锁问题
+
