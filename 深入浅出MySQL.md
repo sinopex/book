@@ -186,10 +186,10 @@ ON表示大小写不敏感 OFF表示敏感
 
 对于MyISAM存储引擎的表,可通过以下方法快速的导入数据:
 
-```mysql
-- 关闭非唯一索引的更新
+```sql
 ALTER TABLE tbl_name DISABLE KEYS;
 loading the data
-- 打开非唯一索引的更新
 ALTER TABLE tbl_name ENABLE KEYS;
 ```
+
+前后两句分别是关闭和打开非唯一索引的更新
