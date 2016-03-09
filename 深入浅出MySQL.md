@@ -204,3 +204,15 @@ ALTER TABLE tbl_name ENABLE KEYS;
 3) 如果应用是自动提交的方式,在导入前执行`SET AUTOCOMMIT = 0`,关闭自动提交,导入结束后执行`SET AUTOCOMMIT = 1`再度开启自动提交模式
 
 - 优化Insert语句
+
+当进行数据INSERT的时候,可以考虑采用以下几种优化方式:
+
+1) 如果同时从同一客户端插入很多行,尽量采用多个值表的insert语句(`insert into tbl_name(..) values(),(),()...`)
+
+2) 如果从不同客户端插入很多行,能通过使用`INSERT DELAYED`语句得到更高的速度,`DELAYED`语句是让`INSERT`语句马上执行,而不是写入内存队列
+
+3) 将索引文件和数据文件分在不同的磁盘上存放(利用建表中的选项)
+
+4) 如果进行批量插入,可以增加`bulk_insert_buffer_size`变量值的方法来提高速度,但是只能针对MyISAM存储引擎
+
+5) 当从一个文本文件装在一个表时,利用`LOAD DATA INFILE`,这种方式比通常的`INSERT`方法快将近20倍
