@@ -137,3 +137,26 @@ MySQL支持外键的存储引擎只有InnoDB，在创建外键的时候，父表
 可以使用set foreign_key_checks=0;临时关闭外键约束，set foreign_key_checks=1;打开约束。
 
 MySQL5.5以后默认使用InnoDB存储引擎
+
+#### 巧用RAND()提取随机行
+
+从所有记录中随机提取一行记录:
+
+`SELECT * FROM USER ORDER BY RAND() LIMIT 1`
+
+#### 正则表达式查询
+
+`SELECT * FROM USER WHERE name regexp '^test_'`
+
+#### MySQL大小写敏感区分
+
+> lower_case_file_system：数据库所在的文件系统对文件名大小写敏感度。
+
+ON表示大小写不敏感 OFF表示敏感
+
+> lower_case_table_names：表名大小写敏感度
+
+- 0表示使用Create语句指定的大小写保存文件
+- 1表示大小写敏感，文件系统以小写保存
+- 2表示使用Create语句指定的大小写保存文件，但MyS
+
