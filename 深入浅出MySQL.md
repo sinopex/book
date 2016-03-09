@@ -166,7 +166,7 @@ ON表示大小写不敏感 OFF表示敏感
 ----
 
 - Heap引擎下只在操作符`=`下才使用引擎
-- 用Or分割开的条件,如果or前的条件列有索引,但是后面的列没有索引,则不会使用索引
+- 用Or分割开的条件,如果or前的条件列有索引,但是后面的列没有索引,则不会使用索引(OR所有条件列都必须有索引才能生效)
 - 对于符合索引,不是索引的第一部分
 - `like`语句以`%`开头的无法使用索引
 - 如果列是字符串,如果没有用引号括起来,也不会用到索引
@@ -222,3 +222,23 @@ ALTER TABLE tbl_name ENABLE KEYS;
 默认情况下,MySQL对所有的`GROUP BY col1,col2,....`的字段进行排序,与`ORDER BY col1,col2`类似.
 
 如果查询包括`GROUP BY`但是用户想要避免排序结果的消耗,则可以指定`ORDER BY NULL`禁止排序
+
+##### 使用SQL提示
+
+> USE INDEX
+
+添加`USE INDEX`希望MySQL参考索引列表
+
+`SELECT * FROM sale use index(idx_order_id) where id=:id`
+
+> IGNORE INDEX
+
+希望MySQL忽略一个或者多个索引,则可以使用`IGNORE INDEX`作为HINT
+
+`SELECT * FROM sale ignore index(idx_order_id) where id=:id`
+
+> FORCE INDEX
+
+为强制MySQL使用一个特定的索引,可在查询中使用`FORCE INDEX`作为HINT
+
+`SELECT * FROM sale force index(idx_order_id) where id=:id`
