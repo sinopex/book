@@ -1,6 +1,6 @@
 ## 白帽子讲WEB安全.md
 
-![封面图片](http://img3.douban.com/lpic/s8977570.jpg)
+![封面图片](http://ontl3plsv.bkt.clouddn.com/blog/web.jpg)
 
 作者:吴瀚清
 
